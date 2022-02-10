@@ -8,25 +8,27 @@ import {
   Heading,
   Stack,
   Box,
-  Container
+  Container,
 } from "@chakra-ui/react";
 import Logo from "./Logo";
 
 export default function Header() {
   return (
-    <Container maxW="container.lg" centerContent>
-      <Grid templateColumns="repeat(5, 1fr)" gap={4} paddingTop={5}>
-        <GridItem colSpan={2} colStart={3} colEnd={4} h="10">
+    <Container maxW="container.xlg" centerContent bg='white' height='64px' borderRadius='15px 15px 0px 0px'>
+      <Grid templateColumns="repeat(5, 1fr)" gap={8} paddingTop={1}>
+        <GridItem colSpan={2} colStart={1} colEnd={5} h="10">
           {" "}
           <Box m={[2, 3]}>
             <Stack direction="row">
               <Logo />
               <Heading
-                size="lg"
-                bgGradient="linear-gradient(135deg, #4BE1EC  0%, #CB5EEE 100%);
-            color: #9D8EEE;"
-                bgClip="text"
-                fontWeight="extrabold"
+                size="md"
+            //     bgGradient="linear-gradient(135deg, #4BE1EC  0%, #CB5EEE 100%);
+            // color: #9D8EEE;"
+            //     bgClip="text"
+                fontWeight="semibold"
+                color="#0A152C"
+                fontSize="20px"
               >
                 buildspace
               </Heading>
@@ -35,9 +37,36 @@ export default function Header() {
         </GridItem>
         <GridItem colStart={5} colEnd={6} h="10">
           <Box m={[2, 3]}>
-            <Button bg="#E2E8F0" color="#1A202C">
+            {/* <Button  bgClip="linear-gradient(90deg, #CB5EEE 0%, #4BE1EC 100%)">
               Connect Wallet
-            </Button>
+            </Button> */}
+            <Box
+              as="button"
+              width="135"
+              height="32px"
+              lineHeight="1.2"
+              transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+              borderRadius="100px"
+              fontSize="14px"
+              fontWeight="semibold"
+              bg="linear-gradient(90deg, #CB5EEE 0%, #4BE1EC 100%)"
+              padding="8px 20px"
+              color="#FFFF"
+              _hover={{ bg: "#ebedf0",
+            color:"#6699FF"
+            }}
+              _active={{
+                bg: "#dddfe2",
+                transform: "scale(0.98)",
+                borderColor: "#bec3c9",
+              }}
+              _focus={{
+                boxShadow:
+                  "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
+              }}
+            >
+              Connect Wallet
+            </Box>
           </Box>
         </GridItem>
       </Grid>

@@ -16,15 +16,13 @@ const LandingPage = (props) => {
 
   return (
     <>
-      <VStack paddingTop={55}>
+      <VStack paddingTop={25}>
         <Container maxW="container.lg" centerContent>
           <LandingContent />
         </Container>
-
         <Container maxW="container.lg" centerContent>
-          <Divider paddingTop="10px" paddingBottom="10px" />
-
-          <ProposalList paddingTop="10px" />
+          {/* <Divider paddingTop="10px" paddingBottom="10px" /> */}
+          <ProposalList paddingTop="15px" />
         </Container>
       </VStack>
     </>

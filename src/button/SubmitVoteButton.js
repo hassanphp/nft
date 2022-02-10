@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button } from '@chakra-ui/react';
 import { UserContext } from '../UserContext';
+import { useLocalStorage } from "../utils/checkLocal";
+
 import axios from 'axios';
 
 const SubmitVoteButton = () => {
     let navigate = useNavigate();
+    const [name, setName] = useLocalStorage("name", "");
+    // setName(e.target.value)}
 
     const { state, update } = useContext(UserContext);
 
