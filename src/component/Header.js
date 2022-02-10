@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../UserContext";
 import {
   Grid,
   GridItem,
@@ -11,8 +12,13 @@ import {
   Container,
 } from "@chakra-ui/react";
 import Logo from "./Logo";
+import ConnectWalletButton from "../button/ConnectWalletButton";
 
-export default function Header() {
+export default function Header(props) {
+  const { state, update } = useContext(UserContext);
+
+  
+
   return (
     <Container maxW="container.xlg" centerContent bg='white' height='64px' borderRadius='15px 15px 0px 0px'>
       <Grid templateColumns="repeat(5, 1fr)" gap={8} paddingTop={1}>
@@ -40,7 +46,7 @@ export default function Header() {
             {/* <Button  bgClip="linear-gradient(90deg, #CB5EEE 0%, #4BE1EC 100%)">
               Connect Wallet
             </Button> */}
-            <Box
+            {/* <Box
               as="button"
               width="135"
               height="32px"
@@ -64,9 +70,14 @@ export default function Header() {
                 boxShadow:
                   "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)",
               }}
+              
             >
               Connect Wallet
-            </Box>
+            </Box> */}
+
+            {/* {!state.currentAccount && ( */}
+              <ConnectWalletButton connectWallet={props.connectWallet} />
+            {/* )} */}
           </Box>
         </GridItem>
       </Grid>
