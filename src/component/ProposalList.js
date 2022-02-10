@@ -62,8 +62,8 @@ const ProposalList = () => {
           paddingLeft={2}
           paddingRight={4}
         >
-          {state.proposals &&
-            state.proposals.map((item) => {
+          {state.proposals.results &&
+            state.proposals.results.map((item) => {
               return (
                 <GridItem key={item.proposal_id} >
                   <Box

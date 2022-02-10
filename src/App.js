@@ -4,10 +4,13 @@ import theme from './theme'
 import { UserProvider } from './UserContext'
 import WalletConnector from './component/WalletConnector';
 import Header from './component/Header'
+import  Fonts  from "./theme/Fonts"
+
 const App = () => {
   return (
     <>
       <ChakraProvider theme={theme}>
+        <Fonts />
         <UserProvider>
           <Header />
           <WalletConnector />
