@@ -86,13 +86,13 @@ const ViewProposal = () => {
       {state.currentProposal && (
         <>
           <BackButton />
-          <VStack width="800" >
 
-          <Container maxW="container.lg">
-              <Box m={[2, 3]}
-                boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
-                borderRadius="20px 20px 0px 0px"
-                bgGradient="linear(to-r,  #13547A 0%, #2DAFA1 100%)"
+          <Container maxW="container.lg" backgroundColor='#FFFFFF' boxShadow="0px 20px 60px rgba(10, 21, 44, 0.04)"
+                  borderRadius="16px" width='73.5%' >
+              {/* <Box m={[2, 3]}
+                boxShadow="0px 20px 60px rgba(10, 21, 44, 0.04)"
+                borderRadius="16px"
+                // bgGradient="linear(to-r,  #13547A 0%, #2DAFA1 100%)"
               >
                 <Center>
                   <Heading
@@ -103,22 +103,26 @@ const ViewProposal = () => {
                   >
                     ➕ Add 1 Basis Point Fee Tier
                   </Heading>
-                </Center>
-                <Box
-                  bg="#F7F7F7"
-                  p="10"
+                </Center> */}
+ <Grid
+          templateColumns="repeat(2, 1fr)"
+          gap={4}
+          paddingTop={55}
+          paddingLeft={8}
+          paddingRight={8}
+          paddingBottom={15}
 
-                >
+        >
+        
+        <GridItem  borderRight='solid 1px #DBDEE7' >
+        <Box paddingTop={45} >
                   {/* <Text>Time: {state.currentProposal.time_created}</Text> */}
                   {/* <Text>Status: {state.currentProposal.status}</Text> */}
-                  <Text fontSize='13px' color="rgba(10, 23, 60, 0.68)">
+                  <Text fontSize='18px' fontWeight='bold' color="#A152C" lineHeight='48px'>
                     {" "}
                     {state.currentProposal.title}
                   </Text>
-                  <Text fontSize='13px' color="rgba(10, 23, 60, 0.68)">
-                    {state.currentProposal.description}
-                  </Text>
-                  <Container maxW="lg.container" paddingTop="20">
+                 
                       {state.currentProposal.status === 'OPEN' ? (
                         <SimpleGrid minChildWidth="160px" spacing="40px">
                       <Box height="80px">
@@ -150,13 +154,24 @@ const ViewProposal = () => {
 <><Heading fontSize='14px'>Status: {state.currentProposal.status}</Heading></>
                       )}
                     
-                  </Container>
                 </Box>
-              </Box>
+                  </GridItem>
+                  <GridItem  paddingLeft={6} >
+                    <Box paddingTop='5px'> <Text fontSize='13px' color="rgba(10, 23, 60, 0.68)">
+                    {state.currentProposal.description}
+                  </Text></Box>
+                  </GridItem>
+                  </Grid>
+         
+
+          
+
+             
+                
+              {/* </Box> */}
               <SubmitVoteButton />
            
           </Container>
-          </VStack>
         </>
       )}
     </>
