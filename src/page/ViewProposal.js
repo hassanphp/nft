@@ -205,11 +205,17 @@ const ViewProposal = () => {
                     borderRadius='22px' 
                     verticalAlign='middle'
                     bg='white'
+
                     fontSize='14px'
                     _hover={{
                       background: "white",
                       color: "#6699FF",
                     }}
+                    _focus={{boxShadow: "none",
+                    background: "white",
+
+                  }}
+
                       leftIcon={<Fire />}
                       >
                    Submit Vote
