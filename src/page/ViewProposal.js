@@ -16,12 +16,15 @@ import {
   ButtonGroup,
   Stack,
   Spacer,
+  IconButton,
+  Button
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import BackButton from "../button/BackButton";
 import SubmitVoteButton from "../button/SubmitVoteButton";
 import Heart from "../component/Heart";
+import Fire from "../component/Fire";
 import BackArrow from "../component/BackArrow";
 import SimpleClock from "../component/SimpleClock";
 import Photo1 from "../assets/avatars/1.png";
@@ -161,9 +164,11 @@ const ViewProposal = () => {
                       </Text>
                     </Stack>
                   </Box>
+                  
                 </HStack>
 
-                <HStack height="40px" paddingTop="50px">
+                <Flex height="40px" paddingTop="50px">
+                  <HStack width='300px'>
                   <AvatarGroup size="sm" max={3} spacing="-10px" loading="lazy">
                     <Avatar src={Photo1} />
                     <Avatar src={Photo2} />
@@ -182,7 +187,35 @@ const ViewProposal = () => {
                       <>{state.currentProposal.vote_count} votes </>
                     )}
                   </Text>
-                </HStack>
+                  
+
+                  </HStack>
+                  <Spacer />
+
+       
+                    
+<HStack paddingRight='70px'>
+<Button 
+                    paddingTop='6px'
+                    paddingBottom='2'
+                    paddingRight='22px'
+                    paddingLeft='15px'
+                    border='solid 1px #DFE2EA'
+                    boxShadow='0px 20px 60px rgba(10, 21, 44, 0.04)' 
+                    borderRadius='22px' 
+                    verticalAlign='middle'
+                    bg='white'
+                    fontSize='14px'
+                    _hover={{
+                      background: "white",
+                      color: "#6699FF",
+                    }}
+                      leftIcon={<Fire />}
+                      >
+                   Submit Vote
+                    </Button>
+</HStack>
+                </Flex>
                 <Box paddingTop={45}>
                   {state.currentProposal.status === "OPEN" ? (
                     <SimpleGrid minChildWidth="160px" spacing="40px">
