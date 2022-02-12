@@ -3,6 +3,9 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import theme from './theme'
 import { UserProvider } from './UserContext'
 import WalletConnector from './component/WalletConnector';
+// import useConnect from './utils/useConnect'
+
+
 import Header from './component/Header'
 import  Fonts  from "./theme/Fonts"
 
@@ -13,7 +16,6 @@ const App = () => {
         <Fonts />
         <UserProvider>
           <Header />
-          <WalletConnector />
         </UserProvider>
       </ChakraProvider>
     </>

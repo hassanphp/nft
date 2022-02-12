@@ -13,6 +13,7 @@ const LoadProposals = () => {
 
   useEffect(() => {
     loadProposals();
+    console.log('Proposal Hook Run')
   }, []);
     
   return (

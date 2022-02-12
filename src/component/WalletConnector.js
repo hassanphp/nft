@@ -1,5 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
+import { Box } from '@chakra-ui/react';
+
 import { UserContext } from '../UserContext';
 import AppRouter from '../AppRouter';
 
@@ -46,10 +48,44 @@ const WalletConnector = () => {
 
   useEffect(() => {
     connectWallet("eth_accounts");
+    update({ connected: true });
   }, []);
 
   return (
-    <AppRouter connectWallet={connectWallet}/>
+<>
+<AppRouter connectWallet={connectWallet}/>
+<Box
+    as="button"
+    position='fixed'
+    top='5'
+    right='110'
+    width="135"
+    height="32px"
+    lineHeight="1.2"
+    transition="all 0.2s cubic-bezier(.08,.52,.52,1)"
+    borderRadius="100px"
+    fontSize="14px"
+    fontWeight="semibold"
+    bg="linear-gradient(90deg, #CB5EEE 0%, #4BE1EC 100%)"
+    padding="8px 20px"
+    color="#FFFF"
+    _hover={{ bg: "#ebedf0",
+  color:"#6699FF"
+  }}
+    _active={{
+      bg: "#dddfe2",
+      transform: "scale(0.98)",
+      borderColor: "#bec3c9",
+    }}
+    _focus={{
+      boxShadow:
+        "none",
+    }}       
+    onClick={() => connectWallet("eth_requestAccounts")}
+    >{!state.currentAccount ? ' Connect Wallet' : ' Wallet Connected'}</Box> 
+</>
+ 
+    
   );
 }
 

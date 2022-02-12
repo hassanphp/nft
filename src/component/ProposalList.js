@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Box,
   Text,
@@ -30,6 +30,8 @@ const ProposalList = () => {
   };
 
   return (
+
+    
     <>
       <Container maxW="container.lg">
         <LoadProposals />

@@ -2,8 +2,6 @@ import React from "react";
 import {
   Grid,
   GridItem,
-  Flex,
-  Button,
   HStack,
   Heading,
   Stack,
