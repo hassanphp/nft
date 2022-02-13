@@ -18,7 +18,8 @@ import {
   Stack,
   Spacer,
   IconButton,
-  Button
+  Button,
+  VStack,
 } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
@@ -30,10 +31,13 @@ import SubmitVoteButton from "../button/SubmitVoteButton";
 import Heart from "../component/Heart";
 import Fire from "../component/Fire";
 import BackArrow from "../component/BackArrow";
+import UpArrow from "../component/UpArrow";
+
 import SimpleClock from "../component/SimpleClock";
 import Photo1 from "../assets/avatars/1.png";
 import Photo2 from "../assets/avatars/2.png";
 import Photo3 from "../assets/avatars/3.png";
+import DownArrow from "./DownArrow";
 
 const ProposalList = () => {
   const { state, update } = useContext(UserContext);
@@ -95,11 +99,10 @@ const ProposalList = () => {
       });
   };
   return (
-
-    
     <>
-      <Container maxW="container.lg" 
-         mt={{
+      <Container
+        maxW="container.lg"
+        mt={{
           base: "5px",
           md: "5px",
           sm: "20%",
@@ -108,70 +111,105 @@ const ProposalList = () => {
         <LoadProposals />
 
         {state.proposals.results &&
-            state.proposals.results.map((item) => {
-              return (
-        <Container
-            maxW="container.lg"
-            backgroundColor="#FFFFFF"
-            boxShadow="0px 20px 60px rgba(10, 21, 44, 0.04)"
-            borderRadius="16px"
-            width="97%" 
-            key={item.proposal_id}
-            mt={{base: 15, md: 20}}
-          >
-            <Grid
-              templateColumns="repeat(2, 1fr)"
-              gap={4}
-              paddingTop={55}
-              paddingLeft={8}
-              paddingRight={8}
-              paddingBottom={15}
-            >
-              <GridItem borderRight="solid 1px #DBDEE7">
-                {/* <HStack>
+          state.proposals.results.map((item) => {
+            return (
+              <Container
+                maxW="container.lg"
+                backgroundColor="#FFFFFF"
+                boxShadow="0px 20px 60px rgba(10, 21, 44, 0.04)"
+                borderRadius="16px"
+                width="97%"
+                key={item.proposal_id}
+                mt={{ base: '20px', md: '20px', lg:'20px', sm:'20px' }}
+              >
+                <Grid
+                  templateColumns={{base:'repeat(2, 1fr)', lg:'repeat(2, 1fr)', md:'repeat(2, 1fr)',
+                 sm:'repeat(1, 1fr)'}}
+                  gap={{base:'4', md:'4', lg:'4', sm:'1'}}
+                  paddingTop={{base: '55px', md: '55px', sm:'2px'}}
+                  paddingLeft={{base: '8px', md: '8px', sm:'2px'}}
+                  paddingRight={{base: '8px', md: '8px', sm:'2px'}}
+pt={{base:'15px', md:'15px', sm:'5px'}}                >
+                  <GridItem 
+                  borderRight={{
+                  base:'solid 1px #DBDEE7', 
+                  md:'solid 1px #DBDEE7', 
+                  sm:'solid 0px #DBDEE7', 
+                }}
+                  
+                  >
+                    {/* <HStack>
                   <BackArrow /> <BackButton />
                 </HStack> */}
-                <Box paddingTop={45}>
-                  <Text
-                    fontSize="18px"
-                    fontWeight="bold"
-                    color="#A152C"
-                    lineHeight="48px"
-                  >
-                    {" "}
-                    {item.title}
-                  </Text>
-                </Box>
+                    <Box paddingTop={{base: '45px', lg:'45px', md: '45px', sm:'2px'}}>
+                      <Text
+                        fontSize="18px"
+                        fontWeight="bold"
+                        color="#A152C"
+                        lineHeight="48px"
+                      >
+                        {" "}
+                        {item.title}
+                      </Text>
+                    </Box>
 
-                <Flex height="40px" paddingTop="50px">
-                  <HStack width='300px'>
-                  <AvatarGroup size="sm" max={3} spacing="-10px" loading="lazy">
-                    <Avatar src={Photo1} />
-                    <Avatar src={Photo2} />
-                    <Avatar name="G" />
-                  </AvatarGroup>
-                  <Text
-                    fontSize="14px"
-                    color="#6699FF"
-                    fontWeight="400"
-                    textDecoration="underline"
-                  
-                  >
-                    {item.vote_count == "1" ? (
-                      <>{item.vote_count} vote </>
-                    ) : (
-                      <>{item.vote_count} votes </>
-                    )}
-                  </Text>
-                  
+                    <Flex height="40px" paddingTop="50px" width='full' >
+                      <HStack width='100%'>
+                        <AvatarGroup
+                          size="sm"
+                          max={3}
+                          spacing="-10px"
+                          loading="lazy"
+                        >
+                          <Avatar src={Photo1} />
+                          <Avatar src={Photo2} />
+                          <Avatar name="G" />
+                        </AvatarGroup>
+                        <Text
+                          fontSize="14px"
+                          color="#6699FF"
+                          fontWeight="400"
+                          textDecoration="underline"
+                        >
+                          {item.vote_count == "1" ? (
+                            <>{item.vote_count} vote </>
+                          ) : (
+                            <>{item.vote_count} votes </>
+                          )}
+                        </Text>
 
-                  </HStack>
-                  <Spacer />
+                          <VStack align='center'         
+ >
+                            <Box>
+                            <Text
+                                fontSize="14px"
+                                color="#00000"
+                                fontWeight="bold"
+                              >
+                                Votes submitted
+                              </Text>
+                            </Box>
+                            <Box >
+                              <UpArrow  width='30px'/>
+                            </Box>
+                            <Box>
+                              <Text
+                                fontSize="24px"
+                                color="#00000"
+                                fontWeight="bold"
+                              >
+                                {item.vote_count }
+                              </Text>
+                            </Box>
+                            <Box >
+                              <DownArrow />
+                            </Box>
+                          </VStack>
+                      </HStack>
+                      <Spacer />
 
-       
-                    
-<HStack paddingRight='70px'>
-{/* <Button 
+                      {/* <HStack paddingRight="70px"> */}
+                        {/* <Button 
                     paddingTop='6px'
                     paddingBottom='2'
                     paddingRight='22px'
@@ -196,102 +234,103 @@ const ProposalList = () => {
                       >
                    Submit Vote
                     </Button> */}
-</HStack>
-                </Flex>
+                      {/* </HStack> */}
+                    </Flex>
 
-                <HStack paddingTop="85px">
-                  <Box>
-                    <Text fontSize="15px" color="#0A152C" fontWeight="500">
-                      Status
-                    </Text>
-                    <Text
-                      paddingTop="10px"
-                      fontSize="15px"
-                      color="#4C5467"
-                      fontWeight="400"
-                    >
-                      {" "}
-                      {item.status}
-                    </Text>
-                  </Box>
-
-                  <Box paddingLeft="20px">
-                    <Text fontSize="15px" color="#0A152C" fontWeight="500">
-                      Created
-                    </Text>
-                    <Stack
-                      direction="row"
-                      paddingTop="10px"
-                      verticalAlign="middle"
-                    >
-                      <SimpleClock />
-                      <Text
-                        color="#4C5467"
-                        paddingLeft="0px"
-                        fontWeight="500"
-                        fontSize="13px"
-                      >
-                        2019-12-06, 01:27
-                      </Text>
-                    </Stack>
-                  </Box>
-                  
-                </HStack>
-
-             
-                <Box paddingTop={45}>
-                  {item.status === "OPEN" ? (
-                    <SimpleGrid minChildWidth="160px" spacing="40px">
-                      <Box height="80px">
-                        <Heading color="rgba(10, 23, 60, 0.68)" fontSize="18px">
-                          Are you hyped for this?
-                        </Heading>
-                      </Box>
-                      <Box height="80px">
-                        <Center>
-                          {/* <Heart color={item.voter_adresses} onClick={submitVote} /> */}
-                          <Heart color="red" onClick={submitVote} />
-                        </Center>
-                      </Box>
-                      <Box height="80px">
-                        <Heading
-                          color="rgba(127, 90, 213, 0.8)"
-                          fontSize="26px"
-                          fontWeight="extrabold"
+                    <HStack paddingTop="85px">
+                      <Box>
+                        <Text fontSize="15px" color="#0A152C" fontWeight="500">
+                          Status
+                        </Text>
+                        <Text
+                          paddingTop="10px"
+                          fontSize="15px"
+                          color="#4C5467"
+                          fontWeight="400"
                         >
-                          {item.vote_count}{" "}
-                          {item.vote_count == "1" ? (
-                            <>Vote </>
-                          ) : (
-                            <>Votes </>
-                          )}
-                        </Heading>
+                          {" "}
+                          {item.status}
+                        </Text>
                       </Box>
-                    </SimpleGrid>
-                  ) : (
-                    <>
-                      {/* <Heading fontSize="14px">
+
+                      <Box paddingLeft="20px">
+                        <Text fontSize="15px" color="#0A152C" fontWeight="500">
+                          Created
+                        </Text>
+                        <Stack
+                          direction="row"
+                          paddingTop="10px"
+                          verticalAlign="middle"
+                        >
+                          <SimpleClock />
+                          <Text
+                            color="#4C5467"
+                            paddingLeft="0px"
+                            fontWeight="500"
+                            fontSize="13px"
+                          >
+                            2019-12-06, 01:27
+                          </Text>
+                        </Stack>
+                      </Box>
+                    </HStack>
+
+                    <Box paddingTop={45}>
+                      {item.status === "OPEN" ? (
+                        <SimpleGrid minChildWidth="160px" spacing="40px">
+                          <Box height="80px">
+                            <Heading
+                              color="rgba(10, 23, 60, 0.68)"
+                              fontSize="18px"
+                            >
+                              Are you hyped for this?
+                            </Heading>
+                          </Box>
+                          <Box height="80px">
+                            <Center>
+                              {/* <Heart color={item.voter_adresses} onClick={submitVote} /> */}
+                              <Heart color="red" onClick={submitVote} />
+                            </Center>
+                          </Box>
+                          <Box height="80px">
+                            <Heading
+                              color="rgba(127, 90, 213, 0.8)"
+                              fontSize="26px"
+                              fontWeight="extrabold"
+                            >
+                              {item.vote_count}{" "}
+                              {item.vote_count == "1" ? (
+                                <>Vote </>
+                              ) : (
+                                <>Votes </>
+                              )}
+                            </Heading>
+                          </Box>
+                        </SimpleGrid>
+                      ) : (
+                        <>
+                          {/* <Heading fontSize="14px">
                         Status: {item.status}
                       </Heading> */}
-                    </>
-                  )}
-                </Box>
-              </GridItem>
-              <GridItem paddingLeft={6}>
-                <Box paddingTop="5px">
-                  {" "}
-                  <Text fontSize="13px" color="rgba(10, 23, 60, 0.68)" >
-                    {item.description}
-                  </Text>
-                </Box>
-              </GridItem>
-            </Grid>
+                        </>
+                      )}
+                    </Box>
+                  </GridItem>
+                  <GridItem pl={{base:'6px', lg:'6px', md: '6px', sm:'0px'}}>
+                    <Box pt={{base: '5px', lg:'5px', md:'5px', sm:'0px'}} >
+                      {" "}
+                      <Text fontSize="13px" color="rgba(10, 23, 60, 0.68)">
+                        {item.description}
+                      </Text>
+                    </Box>
+                  </GridItem>
+                </Grid>
 
-            {/* </Box> */}
-            {/* <SubmitVoteButton /> */}
-          </Container>
-             );
-            })}
+                {/* </Box> */}
+                {/* <SubmitVoteButton /> */}
+              </Container>
+            );
+          })}
 
         {/* <Grid
           // templateColumns="repeat(3, 1fr)"
@@ -391,8 +430,6 @@ const ProposalList = () => {
       </Container>
 
       <Box ref={finalRef} tabIndex={-1} aria-label="Vote This NFT"></Box>
-
-   
     </>
   );
 };
