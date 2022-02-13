@@ -53,7 +53,7 @@ const WalletConnector = () => {
 
   return (
 <>
-<AppRouter connectWallet={connectWallet}/>
+{/* <AppRouter /> */}
 <Box
     as="button"
     position='fixed'
