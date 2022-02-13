@@ -1,19 +1,36 @@
 import React, { useContext, useEffect } from "react";
+import axios from "axios";
+
 import {
   Box,
   Text,
+  Center,
+  AvatarGroup,
+  Avatar,
+  Heading,
+  HStack,
+  Container,
+  Flex,
   Grid,
   GridItem,
-  Container,
-  Avatar,
-  AvatarGroup,
-  HStack,
+  SimpleGrid,
+  ButtonGroup,
+  Stack,
+  Spacer,
+  IconButton,
+  Button
 } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import LoadProposals from "./LoadProposals";
 import AvatarIcons from "./AvatarIcons";
+import BackButton from "../button/BackButton";
+import SubmitVoteButton from "../button/SubmitVoteButton";
+import Heart from "../component/Heart";
+import Fire from "../component/Fire";
+import BackArrow from "../component/BackArrow";
+import SimpleClock from "../component/SimpleClock";
 import Photo1 from "../assets/avatars/1.png";
 import Photo2 from "../assets/avatars/2.png";
 import Photo3 from "../assets/avatars/3.png";
@@ -29,14 +46,261 @@ const ProposalList = () => {
     navigate(`/viewProposal/${item.proposal_id}`);
   };
 
+  const submitVote = async (event) => {
+    event.preventDefault();
+    // const { title, description } = formValue;
+    // const userAccount =  localStorage.getItem('accountId');
+    // const json = JSON.stringify({
+    //      proposal_id: item.proposal_id,
+    //      user_id: userAccount
+    // });
+
+    // const response = await axios.post('https://u7ou8g3qz8.execute-api.us-east-1.amazonaws.com/submitProposalVote', {
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },json
+    // });
+    // console.log("response", response);
+    // navigate('/');
+    const userAccount = localStorage.getItem("accountId");
+
+    var data = JSON.stringify({
+      // proposal_id: item.proposal_id,
+      user_address: userAccount,
+    });
+
+    var config = {
+      method: "post",
+      url: "https://u7ou8g3qz8.execute-api.us-east-1.amazonaws.com/submitProposalVote",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        // setVoted(response.data.vote_count)
+        console.log("Vote Response", response.data);
+
+        if (response.data == "User already voted") {
+          console.log("You already voted for this proposal");
+        }
+        // update({ currentProposal: item });
+
+        console.log("Context Updated");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
 
     
     <>
-      <Container maxW="container.lg">
+      <Container maxW="container.lg" 
+         mt={{
+          base: "5px",
+          md: "5px",
+          sm: "20%",
+        }}
+      >
         <LoadProposals />
-        <Grid
-          templateColumns="repeat(3, 1fr)"
+
+        {state.proposals.results &&
+            state.proposals.results.map((item) => {
+              return (
+        <Container
+            maxW="container.lg"
+            backgroundColor="#FFFFFF"
+            boxShadow="0px 20px 60px rgba(10, 21, 44, 0.04)"
+            borderRadius="16px"
+            width="97%" 
+            key={item.proposal_id}
+            mt={{base: 15, md: 20}}
+          >
+            <Grid
+              templateColumns="repeat(2, 1fr)"
+              gap={4}
+              paddingTop={55}
+              paddingLeft={8}
+              paddingRight={8}
+              paddingBottom={15}
+            >
+              <GridItem borderRight="solid 1px #DBDEE7">
+                {/* <HStack>
+                  <BackArrow /> <BackButton />
+                </HStack> */}
+                <Box paddingTop={45}>
+                  <Text
+                    fontSize="18px"
+                    fontWeight="bold"
+                    color="#A152C"
+                    lineHeight="48px"
+                  >
+                    {" "}
+                    {item.title}
+                  </Text>
+                </Box>
+
+                <Flex height="40px" paddingTop="50px">
+                  <HStack width='300px'>
+                  <AvatarGroup size="sm" max={3} spacing="-10px" loading="lazy">
+                    <Avatar src={Photo1} />
+                    <Avatar src={Photo2} />
+                    <Avatar name="G" />
+                  </AvatarGroup>
+                  <Text
+                    fontSize="14px"
+                    color="#6699FF"
+                    fontWeight="400"
+                    textDecoration="underline"
+                  
+                  >
+                    {item.vote_count == "1" ? (
+                      <>{item.vote_count} vote </>
+                    ) : (
+                      <>{item.vote_count} votes </>
+                    )}
+                  </Text>
+                  
+
+                  </HStack>
+                  <Spacer />
+
+       
+                    
+<HStack paddingRight='70px'>
+{/* <Button 
+                    paddingTop='6px'
+                    paddingBottom='2'
+                    paddingRight='22px'
+                    paddingLeft='15px'
+                    border='solid 1px #DFE2EA'
+                    boxShadow='0px 20px 60px rgba(10, 21, 44, 0.04)' 
+                    borderRadius='22px' 
+                    verticalAlign='middle'
+                    bg='white'
+
+                    fontSize='14px'
+                    _hover={{
+                      background: "white",
+                      color: "#6699FF",
+                    }}
+                    _focus={{boxShadow: "none",
+                    background: "white",
+
+                  }}
+
+                      leftIcon={<Fire />}
+                      >
+                   Submit Vote
+                    </Button> */}
+</HStack>
+                </Flex>
+
+                <HStack paddingTop="85px">
+                  <Box>
+                    <Text fontSize="15px" color="#0A152C" fontWeight="500">
+                      Status
+                    </Text>
+                    <Text
+                      paddingTop="10px"
+                      fontSize="15px"
+                      color="#4C5467"
+                      fontWeight="400"
+                    >
+                      {" "}
+                      {item.status}
+                    </Text>
+                  </Box>
+
+                  <Box paddingLeft="20px">
+                    <Text fontSize="15px" color="#0A152C" fontWeight="500">
+                      Created
+                    </Text>
+                    <Stack
+                      direction="row"
+                      paddingTop="10px"
+                      verticalAlign="middle"
+                    >
+                      <SimpleClock />
+                      <Text
+                        color="#4C5467"
+                        paddingLeft="0px"
+                        fontWeight="500"
+                        fontSize="13px"
+                      >
+                        2019-12-06, 01:27
+                      </Text>
+                    </Stack>
+                  </Box>
+                  
+                </HStack>
+
+             
+                <Box paddingTop={45}>
+                  {item.status === "OPEN" ? (
+                    <SimpleGrid minChildWidth="160px" spacing="40px">
+                      <Box height="80px">
+                        <Heading color="rgba(10, 23, 60, 0.68)" fontSize="18px">
+                          Are you hyped for this?
+                        </Heading>
+                      </Box>
+                      <Box height="80px">
+                        <Center>
+                          {/* <Heart color={item.voter_adresses} onClick={submitVote} /> */}
+                          <Heart color="red" onClick={submitVote} />
+                        </Center>
+                      </Box>
+                      <Box height="80px">
+                        <Heading
+                          color="rgba(127, 90, 213, 0.8)"
+                          fontSize="26px"
+                          fontWeight="extrabold"
+                        >
+                          {item.vote_count}{" "}
+                          {item.vote_count == "1" ? (
+                            <>Vote </>
+                          ) : (
+                            <>Votes </>
+                          )}
+                        </Heading>
+                      </Box>
+                    </SimpleGrid>
+                  ) : (
+                    <>
+                      {/* <Heading fontSize="14px">
+                        Status: {item.status}
+                      </Heading> */}
+                    </>
+                  )}
+                </Box>
+              </GridItem>
+              <GridItem paddingLeft={6}>
+                <Box paddingTop="5px">
+                  {" "}
+                  <Text fontSize="13px" color="rgba(10, 23, 60, 0.68)" >
+                    {item.description}
+                  </Text>
+                </Box>
+              </GridItem>
+            </Grid>
+
+            {/* </Box> */}
+            {/* <SubmitVoteButton /> */}
+          </Container>
+             );
+            })}
+
+        {/* <Grid
+          // templateColumns="repeat(3, 1fr)"
+
+          templateColumns={{
+            base: "repeat(3, 1fr)",
+            md: "repeat(3, 1fr)",
+            sm: "repeat(1, 1fr)",
+          }}
           gap={4}
           paddingTop={5}
           paddingLeft={2}
@@ -123,7 +387,7 @@ const ProposalList = () => {
                 </GridItem>
               );
             })}
-        </Grid>
+        </Grid> */}
       </Container>
 
       <Box ref={finalRef} tabIndex={-1} aria-label="Vote This NFT"></Box>

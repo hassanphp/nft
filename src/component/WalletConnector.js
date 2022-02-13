@@ -56,9 +56,9 @@ const WalletConnector = () => {
 {/* <AppRouter /> */}
 <Box
     as="button"
-    position='fixed'
-    top='5'
-    right='110'
+    // position='fixed'
+    // top='5'
+    // right='110'
     width="135"
     height="32px"
     lineHeight="1.2"

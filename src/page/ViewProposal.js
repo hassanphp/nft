@@ -96,8 +96,7 @@ const ViewProposal = () => {
     <>
       {state.currentProposal && (
         <>
-        <br/>
-        <br/>
+   
           <Container
             maxW="container.lg"
             backgroundColor="#FFFFFF"

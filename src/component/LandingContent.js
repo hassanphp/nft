@@ -11,6 +11,7 @@ import {
   VStack,
   Center,
   Flex,
+  Spacer,
 } from "@chakra-ui/react";
 import Clock from "../component/Clock";
 
@@ -18,16 +19,21 @@ export default function LandingContent() {
   return (
     <Container
       centerContent
-      maxW="container.lg"
+      maxW={{base:"container.lg", md:"container.lg", sm:"container.sm"}}
       // bgGradient="linear(to-r,  #13547A 0%, #2DAFA1 100%)  "
       // borderRadius="20px"
       color="white"
       height="130px"
+      pl={{ sm:'12%'}}
+
     >
-      <Box  display={{ md: "flex" }} width='100%'     alignItems="left" justify="left">
-        <Box flexShrink={0} 
-   
-        >
+      <Box
+        display={{ md: "flex" }}
+        width="100%"
+        alignItems="left"
+        justify="left"
+      >
+        <Box flexShrink={0}>
           <Heading
             size={{ base: "lg", md: "md", lg: "lg", sm: "sm" }}
             bgGradient="linear-gradient(160deg, #CB5EEE 0%, #4BE1EC 90%);
@@ -35,7 +41,8 @@ export default function LandingContent() {
             bgClip="text"
             fontWeight="extrabold"
             fontSize={{ base: "28px", md: "28px", lg: "28px", sm: "24px" }}
-            p="1"
+            p={{base: '1px', md:'1px', sm:'0px'}}
+
           >
             Decide the future
           </Heading>
@@ -47,14 +54,15 @@ export default function LandingContent() {
             fontWeight="extrabold"
             color="#0A152C"
             fontSize={{ base: "28px", md: "28px", lg: "28px", sm: "24px" }}
-            p="1"
+            p={{base: '1px', md:'1px', sm:'0px'}}
           >
             of this community
           </Heading>
         </Box>
-
-        <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
+        <Spacer display={{sm: 'none'}} mt={{ base: 4, md: 0 }} ml={{ md: 6 }}></Spacer>
+        <Box mt={{ base: 4, md: 0, sm: 2 }} ml={{ md: 6, sm: 2 }} alignContent={{sm: 'center'}} >
           <Box
+            alignSelf="right"
             width="200px"
             bg="#FFF7EB"
             borderRadius="10px"
@@ -69,33 +77,45 @@ export default function LandingContent() {
         </Box>
       </Box>
 
-      <Box display={{ md: "flex", lg: "flex" }}  width='100%'  >
-        <Box flexShrink={0} align='right'>
-        <Text color="#4C5467" fontSize={"14px"} align='right'>
-              Cast a vote for your favorite proposal once a week.
-              <br />
-              We deploy the most popular idea every Monday!
-            </Text>
+      <Box display={{ md: "flex", lg: "flex" }} width="100%" mt={{sm:'15px'}}>
+        <Box flexShrink={0} >
+          <Text color="#4C5467" fontSize={{base: '14px', md:'14px', sm:'10px'}} 
+          
+          align={{base:'left', md:'left', sm:'left'}} >
+            Cast a vote for your favorite proposal once a week.
+            <br />
+            We deploy the most popular idea every Monday!
+          </Text>
         </Box>
 
-       
-
-        <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }} direction='left' alignItems="right" justify="right">
-        <Center>
-            <Stack direction="row" paddingTop="15px" verticalAlign="middle">
-              <Clock />
-              <Text
-                color="#6699FF"
-                paddingLeft="5px"
-                fontWeight="bold"
-                fontSize="12px"
-                paddingTop="5px"
-                width="200px"
-              >
-                5d 23h 17m 53s
-              </Text>
-            </Stack>
-          </Center>
+        <Spacer display={{sm:'none'}} mt={{ base: 4, md: 0 }} ml={{ md: 6 }}></Spacer>
+        <Box
+          mt={{ base: 4, md: 0, sm:0 }}
+          ml={{ md: 6 }}
+          direction="right"
+          alignItems="right"
+          justify="right"
+        >
+          <Stack
+            direction="row"
+            paddingTop="15px"
+            verticalAlign="middle"
+            alignSelf="right"
+            // ml="390px"
+            ml={{base: '390px', md:'390px', sm:'10%'}}
+          >
+            <Clock />
+            <Text
+              color="#6699FF"
+              paddingLeft="5px"
+              fontWeight="bold"
+              fontSize="12px"
+              paddingTop="5px"
+              width="200px"
+            >
+              5d 23h 17m 53s
+            </Text>
+          </Stack>
         </Box>
       </Box>
 
