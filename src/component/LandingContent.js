@@ -17,23 +17,19 @@ import Clock from "../component/Clock";
 
 export default function LandingContent() {
   return (
+    <>
     <Container
-      centerContent
-      maxW={{base:"container.lg", md:"container.lg", sm:"container.sm"}}
-      // bgGradient="linear(to-r,  #13547A 0%, #2DAFA1 100%)  "
-      // borderRadius="20px"
+      maxW='container.lg'
       color="white"
       height="130px"
-      pl={{ sm:'12%'}}
-
+      pl={{ sm:'12px'}}
+     
     >
-      <Box
-        display={{ md: "flex" }}
-        width="100%"
-        alignItems="left"
-        justify="left"
-      >
-        <Box flexShrink={0}>
+
+<Stack direction={['column', 'row']} 
+  width='auto'
+  >
+        <Box >
           <Heading
             size={{ base: "lg", md: "md", lg: "lg", sm: "sm" }}
             bgGradient="linear-gradient(160deg, #CB5EEE 0%, #4BE1EC 90%);
@@ -48,7 +44,7 @@ export default function LandingContent() {
           </Heading>
         </Box>
 
-        <Box flexShrink={0}>
+        <Box >
           <Heading
             size={{ base: "lg", md: "md", lg: "lg", sm: "sm" }}
             fontWeight="extrabold"
@@ -59,8 +55,11 @@ export default function LandingContent() {
             of this community
           </Heading>
         </Box>
-        <Spacer display={{sm: 'none'}} mt={{ base: 4, md: 0 }} ml={{ md: 6 }}></Spacer>
-        <Box mt={{ base: 4, md: 0, sm: 2 }} ml={{ md: 6, sm: 2 }} alignContent={{sm: 'center'}} >
+        <Spacer display={{sm: 'none'}} mt={{ base: 4, md: 0 }} ml={{ md: 20, lg: 20}}></Spacer>
+        <Box width='40%' flex='1' alignContent="right"
+ mt={{ base: 4, md: 0, sm: 2 }} ml={{ md: 6, sm: 2 }}   ></Box>
+        <Box width='40%' flex='1' alignContent="right"
+ mt={{ base: 4, md: 0, sm: 2 }} ml={{ md: 6, sm: 2 }}   >
           <Box
             alignSelf="right"
             width="200px"
@@ -75,28 +74,31 @@ export default function LandingContent() {
             </Center>
           </Box>
         </Box>
-      </Box>
+      </Stack>
 
-      <Box display={{ md: "flex", lg: "flex" }} width="100%" mt={{sm:'15px'}}>
-        <Box flexShrink={0} >
-          <Text color="#4C5467" fontSize={{base: '14px', md:'14px', sm:'10px'}} 
+      <Stack direction={['column', 'row']} spacing='24px'
+  width='auto'
+  >
+ 
+ 
+
+  <Box  
+     width='75%'
+         >
+          <Text color="#4C5467"         overflow="hidden"
+ fontSize={{base: '14px', md:'14px', sm:'10px'}} 
           
           align={{base:'left', md:'left', sm:'left'}} >
-            Cast a vote for your favorite proposal once a week.
+            {/* Cast a vote for your favorite proposal once a week.
             <br />
-            We deploy the most popular idea every Monday!
+            We deploy the most popular idea every Monday! */}
+            his is the place to vote on your favorite proposals, get funded, and reach world domination. The more NFTs you have, the more influence you got here (1 NFT = 5 points). When the countdown ends, we
+            launch the most hype idea and replenish your voting power for the next cycle.
           </Text>
         </Box>
+  
 
-        <Spacer display={{sm:'none'}} mt={{ base: 4, md: 0 }} ml={{ md: 6 }}></Spacer>
-        <Box
-          mt={{ base: 4, md: 0, sm:0 }}
-          ml={{ md: 6 }}
-          direction="right"
-          alignItems="right"
-          justify="right"
-        >
-          <Stack
+        <Stack
             direction="row"
             paddingTop="15px"
             verticalAlign="middle"
@@ -116,8 +118,34 @@ export default function LandingContent() {
               5d 23h 17m 53s
             </Text>
           </Stack>
-        </Box>
-      </Box>
+          <Stack
+            direction="row"
+            paddingTop="15px"
+            verticalAlign="middle"
+            alignSelf="right"
+            // ml="390px"
+            ml={{base: '390px', md:'390px', sm:'10%'}}
+          >
+            <Text
+              color="#6699FF"
+              paddingLeft="5px"
+              fontWeight="bold"
+              fontSize="12px"
+              paddingTop="5px"
+              width="200px"
+            >
+              5d 23h 17m 53s
+            </Text>
+          </Stack>
+
+
+
+          
+</Stack>
+ 
+
+      
+
 
       {/* <Grid
         // templateColumns='repeat(3, 1fr)'
@@ -279,5 +307,7 @@ export default function LandingContent() {
         </GridItem>
       </Grid> */}
     </Container>
+          <Box display='none'  marginBottom={{base: '29px', md: '29px', sm:'29px'}} height='300px'></Box>
+</>
   );
 }

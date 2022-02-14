@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme, CSSReset } from '@chakra-ui/react';
 import theme from './theme'
 import { UserProvider } from './UserContext'
 import WalletConnector from './component/WalletConnector';
@@ -25,6 +25,7 @@ const App = () => {
   return (
     <>
       <ChakraProvider theme={theme}>
+        <CSSReset />
         <Fonts />
         <UserProvider>
           <Header />
